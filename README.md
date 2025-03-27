@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Project Analyzer  
 
 Team Name - Hack Trio  
@@ -48,3 +49,6 @@ Run the backend
 node app.js  
 
 To start the frontend, simply open index.html in a browser.  
+=======
+# hacktrioproject
+>>>>>>> 1350ee132d55925baed3eaa45a7c608b4e0e0a59
