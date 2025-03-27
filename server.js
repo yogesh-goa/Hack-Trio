@@ -1,22 +1,18 @@
 const express = require("express");
 const multer = require("multer");
 const simpleGit = require("simple-git");
-<<<<<<< HEAD
 const fs = require("fs");
 const path = require("path");
 const cors = require("cors");
-=======
 const cors = require("cors");
 const fs = require("fs");
 const path = require("path");
->>>>>>> 446947a82f890ae9c5b30697921cfebf587dda00
 
 const app = express();
 const port = 5000;
 
 app.use(cors());
 app.use(express.json());
-<<<<<<< HEAD
 app.use(express.urlencoded({ extended: true }));
 
 const upload = multer({ dest: "uploads/" });

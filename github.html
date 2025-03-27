@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repository Sync</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+        }
+        .navbar a:hover {
+            background-color: #555;
+        }
+        .hero {
+            background: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        .form-container {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        .form-container h2 {
+            font-size: 2em;
+            color: #333;
+        }
+        .form-container form {
+            margin-top: 30px;
+        }
+        .form-container input[type="text"],
+        .form-container button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+        .auth-button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .auth-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="second.html">Features</a>
+        <a href="onboarding.html">Onboarding</a>
+        <a href="github.html">GitHub Sync</a> <!-- Added GitHub Sync link -->
+    </div>
+
+    <div class="hero">
+        <h1>GitHub Repository Sync</h1>
+        <p>Provide the GitHub repository URL to sync and track progress of your code.</p>
+    </div>
+
+    <div class="form-container">
+        <h2>Sync GitHub Repository</h2>
+        <form action="process_repo_sync.php" method="POST">
+            <input type="text" name="github_repo" placeholder="Enter GitHub Repository URL" required>
+            <br>
+            <button type="submit">Sync Repository</button>
+        </form>
+
+        <!-- GitHub OAuth Button -->
+        <br>
+        <a href="https://github.com/login/oauth/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI" class="auth-button">
+            Connect with GitHub
+        </a>
+    </div>
+
+</body>
+</html>
