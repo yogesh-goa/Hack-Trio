@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Project Analyzer - Home</title>
     <style>
         * {
@@ -100,3 +101,78 @@
 </body>
 </html>
 
+=======
+    <title>Project Analyzer</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        #output, #navigationOutput { margin-top: 20px; text-align: left; display: inline-block; background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        button { margin-top: 10px; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h2>SRS-to-Code Mapping</h2>
+
+    <form id="uploadForm">
+        <label for="srsFile">Upload SRS File:</label>
+        <input type="file" id="srsFile" name="srsFile" required><br><br>
+
+        <label for="repoUrl">GitHub Repo URL:</label>
+        <input type="text" id="repoUrl" name="repoUrl" placeholder="Enter GitHub Repo URL" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="output"></div>
+
+    <h2>Project Navigation</h2>
+    <button id="navigateBtn">Navigate Project</button>
+    <div id="navigationOutput"></div>
+
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            const formData = new FormData();
+            formData.append("srsFile", document.getElementById("srsFile").files[0]);
+            formData.append("repoUrl", document.getElementById("repoUrl").value.trim());
+
+            try {
+                const response = await fetch("http://localhost:5000/upload", {
+                    method: "POST",
+                    body: formData
+                });
+                const result = await response.json();
+                document.getElementById("output").innerText = JSON.stringify(result, null, 2);
+            } catch (error) {
+                document.getElementById("output").innerText = "❌ Error processing request.";
+            }
+        });
+
+        document.getElementById("navigateBtn").addEventListener("click", async function() {
+            try {
+                const response = await fetch("http://localhost:5000/navigate");
+                const result = await response.json();
+                if (result.structure) {
+                    document.getElementById("navigationOutput").innerHTML = formatStructure(result.structure);
+                } else {
+                    document.getElementById("navigationOutput").innerText = "❌ No repository found!";
+                }
+            } catch (error) {
+                document.getElementById("navigationOutput").innerText = "❌ Error fetching project structure.";
+            }
+        });
+
+        function formatStructure(structure, indent = 0) {
+            let html = "<ul>";
+            structure.forEach(item => {
+                html += `<li>${" ".repeat(indent * 4)}${item.type === "folder" ? "📁" : "📄"} ${item.name}</li>`;
+                if (item.children) {
+                    html += formatStructure(item.children, indent + 1);
+                }
+            });
+            html += "</ul>";
+            return html;
+        }
+    </script>
+</body>
+</html>
+>>>>>>> 446947a82f890ae9c5b30697921cfebf587dda00
