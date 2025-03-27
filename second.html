@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyze Repository</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+        }
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+
+        /* Form Container */
+        .form-container {
+            background: white;
+            padding: 30px;
+            width: 50%;
+            margin: 20px auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .form-container label {
+            display: block;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+        .form-container input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-container button {
+            display: block;
+            margin-top: 15px;
+            padding: 10px 15px;
+            width: 100%;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background: #0056b3;
+        }
+
+        /* Repository Structure Output (Initially Hidden) */
+        .output {
+            width: 60%;
+            margin: 30px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            display: none; /* Hidden by default */
+        }
+        .output h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .folder {
+            list-style-type: none;
+            font-size: 1.1em;
+        }
+        .folder li {
+            margin-left: 20px;
+        }
+        .folder ul {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="second.html">Features</a>
+        <a href="onboarding.html">Onboarding</a>
+    </div>
+
+    <div class="hero">
+        <h1>Analyze Your Repository</h1>
+        <p>Upload your SRS document and provide your GitHub repository URL.</p>
+    </div>
+
+    <div class="form-container">
+        <form id="repoForm">
+            <label for="repoUrl">GitHub Repository URL:</label>
+            <input type="text" id="repoUrl" name="repoUrl" placeholder="Enter repository URL">
+            
+            <label for="srsFile">Upload SRS File (PDF):</label>
+            <input type="file" id="srsFile" name="srsFile">
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <!-- Repository Structure (Initially Hidden) -->
+    <div class="output" id="repoOutput">
+        <h2>Repository Structure:</h2>
+        <ul class="folder">
+            <li>📂 Project-Analyzer
+                <ul>
+                    <li>📜 README.md</li>
+                    <li>📜 LICENSE</li>
+                    <li>📂 src
+                        <ul>
+                            <li>📜 index.js</li>
+                            <li>📜 app.js</li>
+                        </ul>
+                    </li>
+                    <li>📂 components
+                        <ul>
+                            <li>📜 Navbar.js</li>
+                            <li>📜 Footer.js</li>
+                        </ul>
+                    </li>
+                    <li>📂 public
+                        <ul>
+                            <li>📜 index.html</li>
+                        </ul>
+                    </li>
+                    <li>📂 styles
+                        <ul>
+                            <li>📜 main.css</li>
+                        </ul>
+                    </li>
+                    <li>📂 assets
+                        <ul>
+                            <li>📜 logo.png</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById("repoForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form from reloading the page
+            
+            let repoUrl = document.getElementById("repoUrl").value.trim();
+            let srsFile = document.getElementById("srsFile").files.length;
+
+            if (repoUrl === "" || !repoUrl.startsWith("https://")) {
+                alert("Please enter a valid GitHub repository URL.");
+                return;
+            }
+
+            if (srsFile === 0) {
+                alert("Please upload an SRS file.");
+                return;
+            }
+
+            // Simulate API request (for now)
+            setTimeout(() => {
+                document.getElementById("repoOutput").style.display = "block"; // Show repository structure
+                alert("Repository analyzed successfully!");
+            }, 1000);
+        });
+    </script>
+
+</body>
+</html>

@@ -3,19 +3,25 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.2",
     "fs": "^0.0.1-security",
+    "fs-extra": "^11.3.0",
     "multer": "^1.4.5-lts.2",
     "path": "^0.12.7",
     "pdf-parse": "^1.1.1",
     "simple-git": "^3.27.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://siddesh20xd/project-analyzer.git"
+  },
+  "description": ""
 }

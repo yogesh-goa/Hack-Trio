@@ -3,76 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Analyzer</title>
+    <title>Project Analyzer - Home</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; }
-        #output, #navigationOutput { margin-top: 20px; text-align: left; display: inline-block; background: #f4f4f4; padding: 10px; border-radius: 5px; }
-        button { margin-top: 10px; padding: 10px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #333;
+            padding: 15px;
+            text-align: center;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+        }
+        .navbar a:hover {
+            background-color: #555;
+        }
+        .hero {
+            background: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+        .hero h1 {
+            font-size: 2.5em;
+        }
+        .hero p {
+            font-size: 1.2em;
+            margin-top: 10px;
+        }
+        .hero button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            background: #0056b3;
+            color: white;
+            cursor: pointer;
+        }
+        .hero button:hover {
+            background: #004494;
+        }
+        .description {
+            text-align: center;
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .description h2 {
+            font-size: 2em;
+            color: #333;
+        }
+        .description p {
+            font-size: 1.1em;
+            color: #555;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
-    <h2>SRS-to-Code Mapping</h2>
 
-    <form id="uploadForm">
-        <label for="srsFile">Upload SRS File:</label>
-        <input type="file" id="srsFile" name="srsFile" required><br><br>
+    <div class="navbar">
+        <a href="index.html">Home</a>
+        <a href="second.html">Features</a>
+        <a href="onboarding.html">Onboarding</a> <!-- Added Onboarding Link -->
+    </div>
 
-        <label for="repoUrl">GitHub Repo URL:</label>
-        <input type="text" id="repoUrl" name="repoUrl" placeholder="Enter GitHub Repo URL" required><br><br>
+    <div class="hero">
+        <h1>Welcome to Project Analyzer</h1>
+        <p>Automate project understanding by mapping SRS to code and providing guided onboarding.</p>
+        <button onclick="location.href='second.html'">Get Started</button>
+    </div>
 
-        <button type="submit">Submit</button>
-    </form>
+    <div class="description">
+        <h2>About Project Analyzer</h2>
+        <p>
+            Project Analyzer is a powerful tool that automates the process of understanding software projects. 
+            It takes an SRS document and a GitHub repository, maps the requirements to the code, and provides 
+            a structured analysis. This helps developers quickly navigate, understand dependencies, and identify 
+            missing or incomplete implementations.
+        </p>
+        <p>
+            Additionally, it offers a guided onboarding experience for developers, making it easier to explore 
+            project structures and understand key functionalities.
+        </p>
+    </div>
 
-    <div id="output"></div>
-
-    <h2>Project Navigation</h2>
-    <button id="navigateBtn">Navigate Project</button>
-    <div id="navigationOutput"></div>
-
-    <script>
-        document.getElementById("uploadForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
-            const formData = new FormData();
-            formData.append("srsFile", document.getElementById("srsFile").files[0]);
-            formData.append("repoUrl", document.getElementById("repoUrl").value.trim());
-
-            try {
-                const response = await fetch("http://localhost:5000/upload", {
-                    method: "POST",
-                    body: formData
-                });
-                const result = await response.json();
-                document.getElementById("output").innerText = JSON.stringify(result, null, 2);
-            } catch (error) {
-                document.getElementById("output").innerText = "❌ Error processing request.";
-            }
-        });
-
-        document.getElementById("navigateBtn").addEventListener("click", async function() {
-            try {
-                const response = await fetch("http://localhost:5000/navigate");
-                const result = await response.json();
-                if (result.structure) {
-                    document.getElementById("navigationOutput").innerHTML = formatStructure(result.structure);
-                } else {
-                    document.getElementById("navigationOutput").innerText = "❌ No repository found!";
-                }
-            } catch (error) {
-                document.getElementById("navigationOutput").innerText = "❌ Error fetching project structure.";
-            }
-        });
-
-        function formatStructure(structure, indent = 0) {
-            let html = "<ul>";
-            structure.forEach(item => {
-                html += `<li>${" ".repeat(indent * 4)}${item.type === "folder" ? "📁" : "📄"} ${item.name}</li>`;
-                if (item.children) {
-                    html += formatStructure(item.children, indent + 1);
-                }
-            });
-            html += "</ul>";
-            return html;
-        }
-    </script>
 </body>
 </html>
+
