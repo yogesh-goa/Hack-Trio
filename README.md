@@ -56,3 +56,6 @@ To start the frontend, simply open index.html in a browser.
 =======
 # RETROTHON-016
 >>>>>>> 446947a82f890ae9c5b30697921cfebf587dda00
+
+# vedio_link
+https://drive.google.com/file/d/1jBVXqFYasEQVxMDC2D17TKYlhFTM2U2-/view?usp=sharing
